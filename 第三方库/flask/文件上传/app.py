@@ -1,23 +1,26 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
+"""
+例子：
+"""
 
-# 定义路由规则，可为多个
-@app.route('/')
-# 定义响应函数
-def hello():
-    return 'Hello Flask!'
+
+@app.route('/user', methods=["POST"])
+def get_user():
+    # 默认获取到的都是字符串类型
+    id = request.data
+    print("id type is", type(id))
+    return f'id is {id}!'
+
+
+@app.route('/hobby', methods=["POST"])
+def get_hobby():
+    hobby = request.form.getlist("hobby")
+    print("hobby type is", type(hobby))  # list 类型
+    return f'name is {hobby}!'
 
 
 if __name__ == '__main__':
-    # debug 模式兼具热启动功能
-    app.run(host="127.0.0.1", port=5000, debug=True)
-
-
-"""
-命令行运行方式：flask run
-> 文件名需要为：app.py
-> 设置环境变量可以更改默认文件名：FLASK_APP=main.py
-> 设置环境变量可以开启调试模式：FLASK_ENV=development
-"""
+    app.run(debug=True)

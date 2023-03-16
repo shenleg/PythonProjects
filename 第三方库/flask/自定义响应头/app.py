@@ -1,23 +1,18 @@
-from flask import Flask
+from flask import Flask, make_response
 
 app = Flask(__name__)
 
 
-# 定义路由规则，可为多个
-@app.route('/')
-# 定义响应函数
-def hello():
-    return 'Hello Flask!'
+@app.route('/json')
+def json():
+    # 创建一个相应对象
+    resp = make_response("Hello Flask!")
+    resp.headers['Content-Type'] = 'application/json; charset=utf-8'
+    resp.headers['My-Mark'] = 'zxc'
+    return resp
 
 
 if __name__ == '__main__':
-    # debug 模式兼具热启动功能
-    app.run(host="127.0.0.1", port=5000, debug=True)
+    app.run(debug=True)
 
 
-"""
-命令行运行方式：flask run
-> 文件名需要为：app.py
-> 设置环境变量可以更改默认文件名：FLASK_APP=main.py
-> 设置环境变量可以开启调试模式：FLASK_ENV=development
-"""

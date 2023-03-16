@@ -4,8 +4,8 @@ app = Flask(__name__)
 
 """
 例子：
-1. http://localhost:5000/book_name/词典
-2. http://localhost:5000/book_path/cook/sink
+1. http://127.0.0.1:5000/book_name/词典
+2. http://127.0.0.1:5000/book_path/cook/sink
 """
 
 
