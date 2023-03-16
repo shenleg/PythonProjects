@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    {% block head %}
+    <title>{{ name }}'s Watchlist</title>
+    {% endblock %}
+</head>
+<body>
+    <h2>{{ name }}'s Watchlist</h2>
+
+    {# 定义块，可以有内容，可以覆盖或者追加 #}
+    {% block content %}
+        <h2>我是父模块</h2>
+    {% endblock %}
+
+    <footer>
+        <small>&copy; 2018 <a href="http://helloflask.com/book/3">HelloFlask</a></small>
+    </footer>
+</body>
+</html>
