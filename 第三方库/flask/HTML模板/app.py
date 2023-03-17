@@ -32,6 +32,9 @@ def sub2():
     return render_template('sub2.html', name=name)
 
 
+if __name__ == '__main__':
+    app.run(debug=True)
+
 """
 查看所有过滤器：https://jinja.palletsprojects.com/en/3.0.x/templates/#builtin-filters
 """
