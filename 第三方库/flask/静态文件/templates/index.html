@@ -2,17 +2,10 @@
 <html lang="zh">
 <head>
     <meta charset="utf-8">
-    <title>{{ name }}'s Watchlist</title>
+    <title>Watchlist</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
 </head>
 <body>
-    <h2>{{ name }}'s Watchlist</h2>
-    <p>{{ movies|length }} Titles</p>
-    <ul class="movie-list">
-        {% for movie in movies %}
-        <li>{{ movie.title }} - {{ movie.year }}</li>
-        {% endfor %}
-    </ul>
     {#  flask 内置了 url_for 等常用函数和对象在模板上下文里，可以直接引用不必导入 #}
     {#  使用 url_for 避免了手写 url 出错 #}
     <img alt="Walking Totoro" class="totoro" src="{{ url_for('static', filename='images/totoro.gif') }}">

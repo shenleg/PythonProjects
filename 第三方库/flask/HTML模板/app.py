@@ -2,7 +2,14 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-name = 'Grey Li'
+
+# 模板上下文处理函数，所有的模板都可以拿到此变量
+@app.context_processor
+def inject_user():
+    user = {"name": "Grey Li"}
+    return dict(user=user)
+
+
 movies = [
     {'title': 'My Neighbor Totoro', 'year': '1988'},
     {'title': 'Dead Poets Society', 'year': '1989'},
@@ -19,17 +26,17 @@ movies = [
 
 @app.route('/')
 def index():
-    return render_template('index.html', name=name, movies=movies)
+    return render_template('index.html', movies=movies)
 
 
 @app.route('/sub1')
 def sub1():
-    return render_template('sub1.html', name=name)
+    return render_template('sub1.html')
 
 
 @app.route('/sub2')
 def sub2():
-    return render_template('sub2.html', name=name)
+    return render_template('sub2.html')
 
 
 if __name__ == '__main__':

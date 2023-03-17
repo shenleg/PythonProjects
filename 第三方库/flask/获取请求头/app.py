@@ -1,23 +1,27 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
 
-# 定义路由规则，可为多个
-@app.route('/')
-# 定义响应函数
-def hello():
+@app.route('/request')
+def request():
+    header = request.headers  # 获取请求头
+    form = request.form  # 获取表单参数
+    args = request.args  # 获取查询参数
+    cookies = request.cookies  # 获取 cookies
+    data = request.data  # 包含了请求的数据，并转换为字符串
+    files = request.files  # 上传文件
+    method = request.method  # 请求方法
+    environ = request.environ  # WSGI 隐含的环境配置
+    json = request.json  # json 格式的数据
+    # http://www.example.com/myapplication/page.html?x=y
+    path = request.path  # /page.html
+    script_root = request.script_root  # /myapplication
+    base_url = request.base_url  # http://www.example.com/myapplication/page.html
+    url = request.url  # http://www.example.com/myapplication/page.html?x=y
+    url_root = request.url_root  # http://www.example.com/myapplication/
     return 'Hello Flask!'
 
 
 if __name__ == '__main__':
-    # debug 模式兼具热启动功能
     app.run(host="127.0.0.1", port=5000, debug=True)
-
-
-"""
-命令行运行方式：flask run
-> 文件名需要为：app.py
-> 设置环境变量可以更改默认文件名：FLASK_APP=main.py
-> 设置环境变量可以开启调试模式：FLASK_ENV=development
-"""
