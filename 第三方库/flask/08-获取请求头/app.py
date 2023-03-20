@@ -4,8 +4,8 @@ app = Flask(__name__)
 
 
 @app.route('/request')
-def request():
-    header = request.headers  # 获取请求头
+def get_request():
+    headers = request.headers  # 获取请求头
     form = request.form  # 获取表单参数
     args = request.args  # 获取查询参数
     cookies = request.cookies  # 获取 cookies
