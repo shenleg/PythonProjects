@@ -14,6 +14,7 @@ def request():
     method = request.method  # 请求方法
     environ = request.environ  # WSGI 隐含的环境配置
     json = request.json  # json 格式的数据
+
     # http://www.example.com/myapplication/page.html?x=y
     path = request.path  # /page.html
     script_root = request.script_root  # /myapplication
