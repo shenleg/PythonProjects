@@ -1,7 +1,7 @@
 from flask import Flask, make_response, jsonify
 
 app = Flask(__name__)
-
+# app.config['JSON_AS_ASCII'] = False
 
 @app.route('/get_user1')
 def get_user1():

@@ -1,9 +1,22 @@
+### local template
+git_repos/
+logs/
+reports/
+
 ### Python template
 __pycache__/
+*.pyc
 .pytest_cache/
+.python-version
 venv/
 .idea/
-.python-version
+.vscode/
+
+### platform template
+.DS_Store
+
+### plugin
+debugtalk.bin
+debugtalk.so
 
 
-git_repos/

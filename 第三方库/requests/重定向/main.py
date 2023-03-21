@@ -1,4 +1,5 @@
 import requests
+import subprocess
 
 # allow_redirects=False：阻止重定向
 res = requests.get("http://127.0.0.1:5000/login", allow_redirects=True)
