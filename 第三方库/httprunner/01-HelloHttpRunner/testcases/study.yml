@@ -14,8 +14,11 @@ teststeps:
 -
     name: "发送URL查询参数"
     request:
-        url: "/hobby?hobby=eat&hobby=张三"
+        url: /hobby
         method: GET
+        params:
+            # hobby: eat, 不支持 hobby=eat&hobby=drink 的形式
+            hobby: eat
     validate:
         - eq: ["status_code", 200]
         - eq: ["body.hobby", ["eat", "烫头"]]
@@ -24,7 +27,7 @@ teststeps:
 #    request:
 #        url: /form
 #        method: POST
-#        params:
+#        data:
 #            id: 1
 #            name: 张三
 #    validate:
