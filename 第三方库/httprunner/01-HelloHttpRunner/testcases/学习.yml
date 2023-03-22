@@ -1,0 +1,54 @@
+config:
+    name: "发送接口请求"
+    base_url: "http://127.0.0.1:5000"
+
+teststeps:
+-
+    name: "发送URL路径参数"
+    request:
+        url: /user/张三
+        method: GET
+    validate:
+        - eq: ["status_code", 200]
+        - eq: ["body.name", "张三"]
+-
+    name: "发送URL查询参数"
+    request:
+        url: /hobby
+        method: GET
+        params:
+            # 不支持 hobby=eat&hobby=drink 形式
+            id: 1
+            name: 张三
+    validate:
+        - eq: ["status_code", 200]
+        - eq: ["body.id", "1"]
+        - eq: ["body.name", "张三"]
+-
+    name: "发送FORM参数"
+    request:
+        url: /form
+        method: POST
+        headers:
+            Content-Type: "application/x-www-form-urlencoded"
+        # 默认为 application/json 形式
+        data:
+            id: 1
+            name: 张三
+    validate:
+        - eq: ["status_code", 200]
+        - eq: ["body.id", "1"]
+        - eq: ["body.name", "张三"]
+-
+    name: "发送JSON参数"
+    request:
+        url: /json
+        method: POST
+        # 自动添加请求头
+        json:
+            id: 1
+            name: 张三
+    validate:
+        - eq: ["status_code", 200]
+        - eq: ["body.id", 1]
+        - eq: ["body.name", "张三"]

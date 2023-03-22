@@ -12,7 +12,7 @@ app = Flask(__name__)
 @app.route('/user')
 def get_user():
     # 默认获取到的都是字符串类型
-    id = request.args.get("id", 0)
+    id = request.args.get("id", "0")
     name = request.args["name"]
     print("id type is", type(id))
     print("name type is", type(name))
@@ -21,7 +21,7 @@ def get_user():
 
 @app.route('/hobby')
 def get_hobby():
-    id = request.args.get("id", 0)
+    id = request.args.get("id", "0")
     hobby = request.values.getlist("hobby")
     print("id type is", type(id))
     print("hobby type is", type(hobby))  # list 类型

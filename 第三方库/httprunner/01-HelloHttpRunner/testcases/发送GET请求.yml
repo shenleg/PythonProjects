@@ -1,0 +1,37 @@
+config:
+    name: "发送GET请求"
+    base_url: "http://127.0.0.1:5000"
+
+teststeps:
+-
+    name: "发送URL路径参数"
+    request:
+        url: /user/张三
+        method: GET
+    validate:
+        - eq: ["status_code", 200]
+        - eq: ["body.name", "张三"]
+-
+    name: "发送URL查询参数-URL编码"
+    variables:
+        url: /hobby1?hobby=吃&hobby=drink
+    request:
+        # url: /hobby?hobby=吃&hobby=drink 会乱码
+        # params 无法解析列表
+        url: ${url_encode($url)}
+        method: GET
+    validate:
+        - eq: ["status_code", 200]
+        - eq: ["body.hobby", ["吃", "drink"]]
+-
+    name: "发送URL查询参数2"
+    request:
+        url: /hobby2
+        method: GET
+        params:
+            id: 1
+            name: 张三
+    validate:
+        - eq: ["status_code", 200]
+        - eq: ["body.id", "1"]
+        - eq: ["body.name", "张三"]

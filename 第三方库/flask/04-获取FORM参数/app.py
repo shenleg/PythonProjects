@@ -27,7 +27,7 @@ app = Flask(__name__)
 @app.route('/user', methods=["POST"])
 def get_user():
     # 默认获取到的都是字符串类型
-    id = request.form.get("id", 0)
+    id = request.form.get("id", "0")
     name = request.form["name"]
     print("id type is", type(id))
     print("name type is", type(name))
