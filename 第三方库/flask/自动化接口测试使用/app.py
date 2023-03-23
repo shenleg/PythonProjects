@@ -3,6 +3,7 @@ from flask import Flask, request, make_response
 app = Flask(__name__)
 # app.config['JSON_AS_ASCII'] = False
 
+
 # 获取URL路径参数
 # http://127.0.0.1:5000/user/张三
 @app.route('/user/<name>')
@@ -19,6 +20,7 @@ def get_hobby1():
     # id = request.args.get("id", 0)
     # name = request.args["name"]
     # return {"id": id, "name": name}
+
 
 # 获取URL查询参数
 # http://127.0.0.1:5000/hobby2?id=1&name=张三

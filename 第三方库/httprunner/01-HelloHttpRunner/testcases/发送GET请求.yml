@@ -1,5 +1,5 @@
 config:
-    name: "发送GET请求"
+    name: "测试GET请求"
     base_url: "http://127.0.0.1:5000"
 
 teststeps:
@@ -24,7 +24,7 @@ teststeps:
         - eq: ["status_code", 200]
         - eq: ["body.hobby", ["吃", "drink"]]
 -
-    name: "发送URL查询参数2"
+    name: "发送URL查询参数"
     request:
         url: /hobby2
         method: GET
