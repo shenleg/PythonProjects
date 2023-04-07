@@ -3,9 +3,10 @@ import hashlib
 import hmac
 import time
 import urllib.parse
-import jenkins
 import json
 import urllib3
+
+import jenkins
 
 
 # jenkins
