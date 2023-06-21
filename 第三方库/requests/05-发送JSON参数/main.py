@@ -8,6 +8,8 @@ params2 = {
     "hobby": ["eat", "烫头发"]
 }
 
+# 根据参数的不同来变换请求头
+
 # Content-Type: application/json
 res = requests.post("http://127.0.0.1:5000/user", json=params1)
 print(res.request.headers["Content-Type"])

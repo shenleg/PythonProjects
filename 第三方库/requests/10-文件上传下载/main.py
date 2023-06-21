@@ -1,8 +1,20 @@
 import requests
 
-# 上传文件，可上传多个文件
-# files = {"file": open("requests.txt", "rb")}
+# 上传单个文件
+# files = {"filename": open("requests.txt", "rb")}
 # requests.post("http://127.0.0.1:5000/upload", files=files)
+
+# 上传多个文件
+# files = {"filename1": open("requests.txt", "rb"), "filename2": open("requests.txt", "rb")}
+# requests.post("http://127.0.0.1:5000/upload", files=files)
+
+# 上传文件+表单数据
+# data = {
+#     "name": "张三",
+#     "age": 18
+# }
+# files = {"file": open("requests.txt", "rb")}
+# requests.post("http://127.0.0.1:5000/upload", data=data, files=files)
 
 
 # 下载小文件

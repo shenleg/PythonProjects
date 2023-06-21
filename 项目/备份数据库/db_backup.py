@@ -6,16 +6,16 @@ import subprocess
 import time
 import urllib.parse
 import json
-import urllib3
 
+import requests
 from sqlalchemy import create_engine, text
 
 # SQLAlchemy connect info
-host = '10.101.4.31'
+host = '10.30.0.13'
 port = 3306
 db = 'so_auto_comp'
 user = 'test'
-password = 'test'
+password = '123456'
 
 url = 'mysql+pymysql://{}:{}@{}:{}/{}'.format(user, password, host, port, db)
 
@@ -67,17 +67,15 @@ def DingTalkSend(status_code, content):
                           
                 }
            }
-    urllib3.disable_warnings()
-    http = urllib3.PoolManager()
-    jd = json.dumps(con)
-    jd = bytes(jd, 'utf-8')
-    http.request('POST', url, body=jd, headers={'Content-Type': 'application/json'})
+
+
+    reuqests.post(url, json=con)
 
 
 if __name__ == '__main__':
     res = subprocess.getstatusoutput("sh /home/guosheng/db_backup/db_backup.sh")
     print("命令执行状态\n", res[0])
     print("命令执行结果\n", res[1])
-    DingTalkSend(res[0], res[1])
+    # DingTalkSend(res[0], res[1])
     
 
