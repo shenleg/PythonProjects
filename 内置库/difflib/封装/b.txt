@@ -1,0 +1,8 @@
+json2 = {
+    'code': 0,
+    "message": "成功",
+    "number": [3, 2, 1, 2],
+    "data": {
+        "total": 29,
+    }
+}
