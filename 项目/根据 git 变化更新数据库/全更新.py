@@ -2,7 +2,7 @@ import json
 import os
 import re
 
-from common import config,utils
+from common import config, utils, setting
 from model.GitRepository import GitRepository
 from model.UsingAlchemy import UsingAlchemy
 from model.Schema import Schema
@@ -11,7 +11,7 @@ from model.Schema import Schema
 def get_repo():
     # 拉取测试案例
     testcases_remote_info = config.git_info["TestCases"]
-    testcases_local_path = os.path.join("git_repo", "testcases")
+    testcases_local_path = setting.TESTCASES_REPO_PATH
     testcases_repo = GitRepository(testcases_local_path, testcases_remote_info)
     testcases_repo.pull()
 
@@ -45,7 +45,7 @@ def add():
     get_repo()
     # 2. 获取本地图文件信息，组装成需要的实体列表
     schema_list = file2entity(
-        os.path.join(os.path.dirname(__file__), "git_repo", "testcases")
+        os.path.join(setting.TESTCASES_REPO_PATH, "testcases")
     )
     # 3. 上传到数据库
     with UsingAlchemy() as ua:
@@ -57,7 +57,7 @@ def add_or_update():
     get_repo()
     # 2. 获取本地图文件信息，组装成需要的实体列表
     schema_list = file2entity(
-        os.path.join(os.path.dirname(__file__), "git_repo", "testcases"))
+        os.path.join(setting.TESTCASES_REPO_PATH, "testcases"))
     # 3. 上传到数据库
     schema_id_list = []  # 记录本地id
     with UsingAlchemy() as ua:

@@ -3,7 +3,7 @@ git_info = {
         "username": "zhangyunhui",
         "password": "zyh0921,",
         "remote_http":
-            "http://10.101.4.30/qa/testcases.git",
+            "http://10.30.0.11:8929/qa/testcases.git",
     }
 }
 
@@ -18,11 +18,11 @@ subject_ch2en = {
 
 db_info = {
     "MySQL": {
-        "host": "10.101.4.31",
+        "host": "10.30.0.13",
         "port": 3306,
         "db": "so_auto_comp",
         "username": "test",
-        "password": "test",
+        "password": "123456",
         "sqlalchemy_url_format": "mysql+pymysql://{}:{}@{}:{}/{}"
     }
 }
