@@ -4,7 +4,8 @@ import hmac
 import time
 import urllib.parse
 import json
-import urllib3
+
+import requests
 
 import jenkins
 
@@ -59,12 +60,7 @@ def dingding_send():
             "text": send_content
         }
     }
-    jd = json.dumps(data)
-    jd = bytes(jd, 'utf-8')
-    urllib3.disable_warnings()
-    http = urllib3.PoolManager()
-    res = http.request('POST', url, body=jd, headers={'Content-Type': 'application/json'})
-    print(res.data.decode("utf-8"))
+    requests.post(url, json=data)
 
 
 if __name__ == '__main__':

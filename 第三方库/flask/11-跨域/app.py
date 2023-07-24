@@ -2,9 +2,11 @@ from flask import Flask
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-CORS(app, resources="/*")  # 全局路由
+CORS(app, resources="/*")  # 1.全局路由
 
 """
+pip install Flask-Cors
+
 同源的意思就是，web 请求的接口的协议、域名、端口，有一个不同，就会出现跨域的情况
 
 CORS 参数说明
@@ -21,7 +23,7 @@ max_age     整数、字符串  Access-Control-Max-Age  预检请求的有效时
 
 # 定义路由规则，可为多个
 @app.route('/')
-@cross_origin(origins="*")  # 单行路由
+@cross_origin(origins="*")  # 2.单行路由
 # 定义响应函数
 def hello():
     return 'Hello Flask!'
