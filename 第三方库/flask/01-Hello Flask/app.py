@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 
 # 定义路由规则，可为多个
-@app.route('/')
+@app.route('/hello')
 # 定义响应函数
 def hello():
     return 'Hello Flask!'
