@@ -2,6 +2,7 @@
 python-jenkins==1.7.0
 urllib3==1.26.16
 """
+import time
 
 import jenkins
 
@@ -91,7 +92,9 @@ def main():
     jenkins_server = JenkinsHelper(jenkins_url, username, password)
 
     job_list = jenkins_server.get_job_list()
+    time_start = time.time()
     job_info = jenkins_server.get_job_info(job_name)
+    print(time.time() - time_start)
 
 
 if __name__ == '__main__':
