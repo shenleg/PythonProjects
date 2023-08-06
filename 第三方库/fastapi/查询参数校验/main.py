@@ -14,13 +14,6 @@ class Name(str, Enum):
 
 
 """
-例子：
-1. http://127.0.0.1:5000/book_id/2
-2. http://127.0.0.1:5000/users/a
-3. http://127.0.0.1:5000/users2
-4. http://127.0.0.1:5000/users3/tom444
-5. http://127.0.0.1:5000/items
-
 3.8 3.9 3.10 区别
 Optional[str] 和 str | None 等价
 Union[int, str] 和 int | str 等价
@@ -30,44 +23,53 @@ Query 不支持给"路径参数"做校验！
 """
 
 
-# 单个类型，必传值
-@app.get('/book_id/{book_id}')
+# 单个类型，默认是必传值
+# http://127.0.0.1:5000/book_id?book_id=2
+@app.get('/book_id')
 def get_book_id(book_id: int):
-    print("book_id type is", type(book_id))
-    return f'book_id is {book_id}!'
+    return f'book_id is {book_id}, type is {type(book_id)}!'
 
 
-# 多选一类型
-@app.get('/users/{user_id}')
-def get_user(user_id: Union[int, str]):
-    print("user_id type is", type(user_id))
-    return f'user_id is {user_id}!'
+# 多选一类型，使用Union
+# http://127.0.0.1:5000/user1?user_id=1
+@app.get('/user1')
+def get_user1(user_id: Union[int, str]):
+    return f'user_id is {user_id}，type is {type(user_id)}!'
 
 
-# 可选值
-@app.get('/users2')
+# 可选值，默认值，使用Query、Optional
+# http://127.0.0.1:5000/user2
+@app.get('/user2')
 def get_user2(user_id: int = Query(12), user_name: Optional[str] = None):
-    print("user_id type is", type(user_id))
-    print("user_name type is", type(user_name))
-    return f'user_id is {user_id} and user_name is {user_name}!'
+    return f'user_id is {user_id} type is {type(user_id)} and ' \
+           f'user_name is {user_name} type is {type(user_name)}!'
 
 
-# 长度、匹配限制
-@app.get('/users3')
+# 长度、匹配限制，使用Query
+# http://127.0.0.1:5000/user3?user_name=atom
+@app.get('/user3')
 def get_user3(user_name: str = Query(min_length=2, max_length=4, pattern=r"^tom")):
-    print("user_name type is", type(user_name))
-    return f'user_name is {user_name}!'
+    return f'user_name is {user_name}, type is {type(user_name)}!'
 
 
-# 数值校验
+# 数值校验，使用Query
+# http://127.0.0.1:5000/items?item1=6&item2=5&item3=10
 @app.get('/items')
-def get_user3(item1: int = Query(gt=5), item2: int = Query(le=7), item3: int = Query(ge=10, le=10)):
+def get_items(item1: int = Query(gt=5), item2: int = Query(le=7), item3: int = Query(ge=10, le=10)):
     return {"item1": item1, "item2": item2, "item3": item3}
 
 
-# 枚举类型
-@app.get("/user/{user_name}")
-async def get_user(user_name: Name):
+# 必传且限制
+# http://127.0.0.1:5000/user4?user_name=aa
+@app.get('/user4')
+async def get_user4(user_name: str = Query(..., min_length=3)):
+    return f'user_name is {user_name}, type is {type(user_name)}!'
+
+
+# 枚举类型，定义好枚举类
+# http://127.0.0.1:5000/user5?user_name=a
+@app.get("/user5")
+async def get_user5(user_name: Name):
     return {"user_name": user_name}
 
 
