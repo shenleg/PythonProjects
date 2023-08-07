@@ -1,11 +1,12 @@
 from flask import Flask
 
+# 1.创建核心app
 app = Flask(__name__)
 
 
-# 定义路由规则，可为多个
+# 2.定义路由规则，可为多个
 @app.route('/hello')
-# 定义响应函数
+# 3.定义响应函数
 def hello():
     return 'Hello Flask!'
 
@@ -13,7 +14,6 @@ def hello():
 if __name__ == '__main__':
     # debug 模式兼具热启动功能
     app.run(host="127.0.0.1", port=5000, debug=True)
-
 
 """
 命令行运行方式：flask run

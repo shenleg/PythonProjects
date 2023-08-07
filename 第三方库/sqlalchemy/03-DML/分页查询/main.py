@@ -7,8 +7,11 @@ offset = page_size * (page_current - 1)
 limit = page_size
 
 with UsingAlchemy() as ua:
-    student_list = ua.session.query(Student).all()
-    print(student_list)
+    query = ua.session.query(Student)
+    print("all students:", query)
 
-    student_list = ua.session.query(Student).offset(offset).limit(limit).all()
-    print(student_list)
+    query = ua.session.query(Student).offset(offset).limit(limit)
+    print("limit:", query)
+
+    query = ua.session.query(Student)[1:2]
+    print("limit:", query)

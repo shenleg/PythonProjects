@@ -1,12 +1,13 @@
 from fastapi import FastAPI
 import uvicorn
 
+# 1.创建核心app
 app = FastAPI()
 
 
-# 定义路由规则，可为多个
+# 2.定义路由规则，可为多个
 @app.get("/hello")
-# 定义响应函数
+# 3.定义响应函数
 def hello():
     return "Hello, FastAPI"
 
