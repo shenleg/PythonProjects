@@ -16,14 +16,25 @@ with UsingAlchemy() as ua:
     for name, age in query:
         print(name, age)
 
-    # 查询结果转换为列表
-    student_list = ua.session.query(Student.name, Student.age).all()
-    for student in student_list:
-        print(student)
-
     # 类别名
     student_alias = aliased(Student)
     student_list = ua.session.query(student_alias, student_alias.name).all()
     for student in student_list:
         print(student)
 
+    # 查询结果转换为列表，获取所有数据
+    student_list = ua.session.query(Student.name, Student.age).all()
+    for student in student_list:
+        print(student)
+
+    # 查询结果转换为列表，获取第一行
+    student = ua.session.query(Student.name, Student.age).first()
+    print(student)
+
+    # 查询结果转换为列表，当且仅当只有一行，获取第一行
+    student_name = ua.session.query(Student.name, Student.age).filter(Student.id == 1).one()
+    print(student_name)
+
+    # 查询结果转换为列表，当且仅当只有一行，获取第一行第一列的值
+    student_id = ua.session.query(Student.id).filter(Student.id == 1).scalar()
+    print(student_id)
