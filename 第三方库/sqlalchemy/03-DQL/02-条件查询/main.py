@@ -35,13 +35,13 @@ with UsingAlchemy() as ua:
     query = ua.session.query(Student).filter(
         or_(Student.id == 1, Student.id == 4)
     )
-    print("or_filter1", str(query))
+    print("or_filter", str(query))
 
     # NOT
     query = ua.session.query(Student).filter(
         not_(Student.id == 1)
     )
-    print("not_filter1", str(query))
+    print("not_filter", str(query))
 
     # 多条件查询
     student_id = None

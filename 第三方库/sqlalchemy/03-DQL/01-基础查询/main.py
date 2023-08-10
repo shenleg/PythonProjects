@@ -31,10 +31,10 @@ with UsingAlchemy() as ua:
     student = ua.session.query(Student.name, Student.age).first()
     print(student)
 
-    # 查询结果转换为列表，当且仅当只有一行，获取第一行
-    student_name = ua.session.query(Student.name, Student.age).filter(Student.id == 1).one()
-    print(student_name)
+    # 查询结果转换为列表，当且仅当只有一行，获取第一行，否则报错
+    student = ua.session.query(Student.name, Student.age).filter(Student.id == 1).one()
+    print(student)
 
-    # 查询结果转换为列表，当且仅当只有一行，获取第一行第一列的值
+    # 查询结果转换为列表，获取第一行第一列的值
     student_id = ua.session.query(Student.id).filter(Student.id == 1).scalar()
     print(student_id)
