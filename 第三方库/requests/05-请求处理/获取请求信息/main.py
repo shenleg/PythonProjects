@@ -1,7 +1,7 @@
 import requests
 
 
-res = requests.get("http://127.0.0.1:5000/get_user2")
+res = requests.get("https://httpbin.org/get")
 print(res.request)
 print(res.request.method)
 print(res.request.path_url)
