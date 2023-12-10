@@ -1,0 +1,3 @@
+'httpx[cli]'
+'httpx[socks]'
+'httpx[http2]'
