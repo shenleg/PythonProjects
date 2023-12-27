@@ -8,7 +8,7 @@ def square(x):
 
 
 if __name__ == "__main__":
-    # 创建进程池，指定进程数量为3
+    # 创建进程池，指定进程数量为3，默认自动选择进程数量
     pool = multiprocessing.Pool(processes=3)
 
     # 准备任务列表
