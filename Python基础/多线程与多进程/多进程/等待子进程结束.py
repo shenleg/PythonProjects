@@ -16,7 +16,7 @@ if __name__ == "__main__":
         processes.append(p)
         p.start()
 
-    # 等待所有子进程结束
+    # 等待所有子进程结束，阻塞
     for p in processes:
         p.join()
 
