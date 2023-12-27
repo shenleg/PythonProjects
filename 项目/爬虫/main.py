@@ -29,10 +29,15 @@ def scrape_page(url):
         logging.error(f'error occurred while scraping {url}', exc_info=True)
 
 
-# def scrape_index(page):
-#     """根据页码爬取索引页"""
-#     index_url = f'{BASE_URL}/page/{page}'
-#     return scrape_page(index_url)
+def scrape_index(page):
+    """根据页码爬取索引页"""
+    index_url = f'{BASE_URL}/page/{page}'
+    return scrape_page(index_url)
+
+
+def scrape_detail(url):
+    """根据url爬取索引页"""
+    return scrape_page(url)
 
 
 def parse_index(html):
@@ -84,14 +89,13 @@ def save_data(data):
 def main():
     for i in range(1, TOTAL_PAGE + 1):
         # 获取索引页
-        index_url = f"{BASE_URL}/page/{i}"
-        index_html = scrape_page(index_url)
+        index_html = scrape_index(i)
         # 解析索引页，获取详细页url
         detail_urls = parse_index(index_html)
         logging.info(f"detail_urls {detail_urls}")
         # 获取详细页
         for detail_url in detail_urls:
-            detail_html = scrape_page(detail_url)
+            detail_html = scrape_detail(detail_url)
             # 解析详细页，获取数据
             data = parse_detail(detail_html)
             logging.info(f"get detail data {data}")
@@ -100,14 +104,13 @@ def main():
 
 def main2(page):
     # 获取索引页
-    index_url = f"{BASE_URL}/page/{page}"
-    index_html = scrape_page(index_url)
+    index_html = scrape_index(page)
     # 解析索引页，获取详细页url
     detail_urls = parse_index(index_html)
     logging.info(f"detail_urls {detail_urls}")
     # 获取详细页
     for detail_url in detail_urls:
-        detail_html = scrape_page(detail_url)
+        detail_html = scrape_detail(detail_url)
         # 解析详细页，获取数据
         data = parse_detail(detail_html)
         logging.info(f"get detail data {data}")
